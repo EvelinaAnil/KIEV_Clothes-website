@@ -58,9 +58,8 @@ body {
     text-decoration: none;
     color: #222222;
     /* font-size: 16px; */
-    padding: 10px 5px;
+    padding: 6px 12px;
     position: relative;
-    padding-bottom: 5px;
     transition: color 0.3s ease ;
 }
 
@@ -109,7 +108,6 @@ body {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
 }
-
 
 
 .navbar {
@@ -383,6 +381,71 @@ body {
     }
 }
 
+/* ---------------------------------------- */
+
+@media screen and (max-width: 950px) {
+    .navbar-header {
+        min-width: auto;
+        height: auto;
+        padding: 15px;
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        gap: 15px;
+    }
+
+    .logo { order: 1; }
+    .auth-buttons { order: 2; width: auto; } 
+    .main-nav { order: 3; }
+
+    /* Остальные твои стили внутри этого медиа-запроса... */
+}
+
+/* Также обнови второй точечный фикс в самом низу кода */
+@media screen and (max-width: 950px) {
+    .navbar-header {
+        flex-direction: row; 
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .auth-buttons .login-link {
+        order: -1; 
+    }
+}
+
+/* -------------------------------------------------- */
+@media screen and (min-width: 951px) and (max-width: 1040px) {
+    .navbar-header {
+        padding: 0 2%; /* Сжимаем боковые отступы хедера с 5% до 2%, освобождая место */
+    }
+
+    .main-nav {
+        gap: 12px; /* Немного сдвигаем пункты меню друг к другу */
+    }
+
+    .main-nav a {
+        white-space: nowrap; /* Запрещаем перенос "About us" на две строки */
+        padding: 6px 12px;   /* Выравниваем верхний и нижний отступы, чтобы они стали одинаковыми */
+    }
+
+    /* Исправляем центровку фонового пятна, чтобы оно не уезжало вниз */
+    .main-nav a::before {
+        top: 50%;
+        left: 50%;
+        height: 85%; /* Делаем плашку чуть компактнее по высоте, чтобы она смотрелась аккуратно */
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    .main-nav a:hover::before,
+    .main-nav a.active::before {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .user-area {
+        gap: 8px; /* Слегка разгружаем правую часть с корзиной и юзером */
+    }
+}
 
 
 /* NEW VOR AUTH BUTTONS */
