@@ -2,6 +2,9 @@ import sqlite3
 
 DB_NAME = "system_data.sqlite3"
 
+from flask_bcrypt import Bcrypt
+bcrypt = Bcrypt()
+
 def get_db_connection():
     # Do a connect with stabiel work with Flask
     conn = sqlite3.connect(DB_NAME, check_same_thread=False)
@@ -42,10 +45,13 @@ def check_user(username, password):
     """Check user exist"""
     db = get_db_connection()
     cursor = db.cursor()
-    cursor.execute("SELECT * FROM users WHERE login = ? AND password = ?", (username, password))
+    cursor.execute("SELECT * FROM users WHERE login = ?", (username,))
     user = cursor.fetchone()
     db.close()
-    return user is not None
+
+    if user:
+        return bcrypt.check_password_hash(user['password'],password)
+    return False
 
 def reset_password_with_email(username, email, new_password):
     """Update Password by verifying Username and Email"""
