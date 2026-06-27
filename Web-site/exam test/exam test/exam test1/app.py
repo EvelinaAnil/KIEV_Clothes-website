@@ -1,7 +1,7 @@
 import re 
 from flask import Flask, render_template, request, redirect, url_for, session, abort #for remember me 
 from database.inloggen import show_inlog_Admin, show_clients,  check_user, get_user_profile, get_user_purchases
-from database.register import add_user, tableDo_if_not
+from database.register import add_user,user_exist, tableDo_if_not
 from database.forget import init_db, check_user, reset_password_with_email
 from database.products import get_all_products, tableProdDo_if_not, populate_products, add_to_cart, get_cart_items, get_cart_count, remove_from_cart, update_cart_quantity 
 from database.profile import get_user_profile, update_user_field, update_wallet
@@ -9,8 +9,11 @@ from database.besteld_prod import process_checkout
 from database.one_prod import get_product_by_id
 from datetime import datetime
 from collections import defaultdict
+# Hashing passwords
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
+bcrypt = Bcrypt(app)
 app.secret_key = "super-secret-key-kiev-777"
 tableDo_if_not()
 tableProdDo_if_not()
@@ -61,8 +64,10 @@ def register():
         psw_valid, all_errors["psw"] = is_password_strong(password)
 
         if email_valid and uname_valid and psw_valid:
-            if not check_user(username, email): 
-                if add_user(username, email, password):
+            if not user_exist(username, email): 
+                hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+                
+                if add_user(username, email, hashed_password):
                     return redirect(url_for('inlogg'))
                 else:
                     general_error = "Database error."
@@ -236,8 +241,11 @@ def forgot_password():
         psw_valid, all_errors["psw"] = is_password_strong(new_password)
 
         if psw_valid:
+
+            hashed_newPassword = bcrypt.generate_password_hash(new_password).decode('utf-8')
+            
             # 2. If password is valid, check if user exists and update
-            success = reset_password_with_email(username, email, new_password)
+            success = reset_password_with_email(username, email, hashed_newPassword)
             if success:
                 return redirect(url_for('inlogg'))
             else:
