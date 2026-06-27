@@ -2,6 +2,10 @@ import sqlite3
 
 db = sqlite3.connect("system_data.sqlite3", check_same_thread=False)
 
+from flask_bcrypt import Bcrypt
+bcrypt = Bcrypt()
+
+
 def tableDo_if_not():
     cursor = db.cursor()
     # for register in 
@@ -39,20 +43,22 @@ def add_user(username,email, password):
         cursor.execute("INSERT INTO users (login,email, password) VALUES (?, ?, ?)", (username, email, password))
         db.commit()
         return True
-    except sqlite3.IntegrityError:
-        # This happens if the username/email already exists
+    # except sqlite3.IntegrityError:
+    #     # # This happens if the username/email already exists
+    #     # return False
+    except sqlite3.IntegrityError as e:
+        # ---- ДОБАВЬ ЭТИ ДВЕ СТРОЧКИ НАПЕЧАТАТЬ ОШИБКУ В КОНСОЛЬ ----
+        print("\n!!! СБОЙ ЗАПИСИ В БАЗУ ДАННЫХ !!!")
+        print(f"Детали ошибки: {e}\n")
+        # -----------------------------------------------------------
         return False
     
     
 
-def check_user(username, password):
+def user_exist(username, email):
     """ CHeck if exist this user or no """
     cursor = db.cursor()
     # Look for user
-    cursor.execute("SELECT * FROM users WHERE login = ? AND password = ?", (username,password))
+    cursor.execute("SELECT * FROM users WHERE login = ? OR email = ?", (username, email))
     user = cursor.fetchone()
-
-    if user:
-        return True
-    else:
-        return False
+    return cursor.fetchone() is not None

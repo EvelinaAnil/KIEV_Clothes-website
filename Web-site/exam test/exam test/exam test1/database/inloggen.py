@@ -2,6 +2,8 @@ import sqlite3
 
 db = sqlite3.connect("system_data.sqlite3", check_same_thread=False)
 
+from flask_bcrypt import Bcrypt
+bcrypt = Bcrypt()
 
     
 # For testers to see if its works
@@ -25,14 +27,15 @@ def show_clients():
     return rows
 
 def check_user(username, password):
-    """ CHeck if exist this user or no """
+    """ CHeck if exist this user or no using Bcrypt """
     cursor = db.cursor()
     # Look for user
-    cursor.execute("SELECT * FROM users WHERE login = ? AND password = ?", (username,password))
+    cursor.execute("SELECT * FROM users WHERE login = ?", (username,))
     user = cursor.fetchone()
 
     if user:
-        return True
+        db_hashed_passw = user[3]
+        return bcrypt.check_password_hash(db_hashed_passw, password)
     else:
         return False
     
