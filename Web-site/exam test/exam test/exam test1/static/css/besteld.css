@@ -1,0 +1,151 @@
+body {
+    background-color: #f4f7f8;
+    font-family: 'Jura', sans-serif;
+    margin: 0;
+    padding-top: 80px;
+}
+
+.orders-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h1 {
+    color: #0a0a23;
+    border-bottom: 2px solid #b7cccf;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.order-card {
+    background: white;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+}
+
+/* Header of the dropdown */
+.order-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    list-style: none; /* Removes default triangle */
+    background: #fff;
+    transition: background 0.3s;
+}
+
+.order-header:hover {
+    background: #f0f4f5;
+}
+
+.order-info-left, .order-info-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.order-date {
+    font-weight: bold;
+    color: #3f4e5e;
+}
+
+.order-status {
+    background: #e1f5fe;
+    color: #0288d1;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.order-total {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0a0a23;
+}
+
+.order-count {
+    color: #666;
+}
+
+.arrow {
+    font-size: 12px;
+    transition: transform 0.3s;
+}
+
+/* Rotate arrow when open */
+details[open] .arrow {
+    transform: rotate(180deg);
+}
+
+/* Inside the dropdown */
+.order-details {
+    padding: 20px;
+    border-top: 1px solid #eee;
+    background: #fafafa;
+}
+
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.order-table th {
+    text-align: left;
+    color: #888;
+    font-size: 14px;
+    padding-bottom: 10px;
+}
+
+.order-table td {
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.prod-cell {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.prod-cell img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.order-footer {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.order-footer p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.final-total {
+    font-size: 20px;
+    font-weight: bold;
+    color: #0a0a23 !important;
+}
+
+/* Remove default details marker in Chrome/Safari */
+.order-header::-webkit-details-marker {
+    display: none;
+}
+
+
+summary {
+    list-style: none;
+    cursor: pointer;
+}
+summary::-webkit-details-marker {
+    display: none;
+}

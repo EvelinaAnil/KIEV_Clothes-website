@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+   <!-- fonts: Jeresey 10; Jura; Archivo Black; Bungee -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bungee&family=Jersey+10&family=Jura:wght@300..700&display=swap" rel="stylesheet">
+    <!-- css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_indx.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    <title>Kiev | Reset Password</title>
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='./icons/title_icon.svg') }}"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='./css/inloggen.css') }}">
+
+</head>
+<body>
+                <div class="navbar-header">
+        <div class="logo">
+            <a href="index.html">
+                <svg class="kiev-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 95V75M50 75C40 70 20 80 15 60C10 40 30 45 45 50M50 75C60 70 80 80 85 60C90 40 70 45 55 50M50 75C50 60 75 40 65 20C55 0 45 40 50 55M50 75C50 60 25 40 35 20C45 0 55 40 50 55" 
+                          stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <strong>Kiev</strong>
+            </a>
+        </div>
+        
+        <nav class="main-nav">
+            <div class="nav-indicator"></div>
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="{{ url_for('product') }}" class="nav-link">Product</a>
+            <a href="aboutus.html" class="nav-link">About us</a>
+        </nav>
+
+        <div class="auth-buttons">
+            {% if session.get('user') %}
+                <div class="user-area">
+                    <div class="user-icon cart-icon"> <a href="{{ url_for('profile') }}">
+                        <img src="data:image/png;base64,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" alt="circled-user">
+                    </a></div> 
+                    <span class="welcome-text">Welcome, <strong>{{ session['user'] }}</strong>!</span>
+                    <a href="{{ url_for('logout') }}" class="btn sign-up">Log out</a>
+
+                    <a href="{{ url_for('bestelling') }}" class="cart-icon" title="View Orders">
+                        <img src="data:image/png;base64,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" alt="shopping-cart">
+                        {% if cart_count > 0 %}
+                            <span class="cart-badge">
+                                {{ cart_count if cart_count <= 90 else '90+' }}
+                            </span>
+                        {% endif %}
+                    </a>
+                </div>
+            {% else %}
+                <div class="user-icon cart-icon">
+                    <a href="{{ url_for('register') }}" class="cart-icon" style="position: relative;">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAIBElEQVR4nO1baWxVRRT+KvbVhoK2gJCIrIW4RAFNjESLiEBcUIR/GoEKilWj4lIERUg0SlDgh8Eomz804ILEH8oiRmRNAAUjNQpawAgCKlukyFb6zEm+SY6TuffN3LcApl9yQ5k7Z5Y7Zz/zgGY0I59IAagCMB7AfADrAOwAcAjAST6H2Cbv5rFvFWnPS7QCMArAcgDHAKQTPsc4hoxVhvMAPQDMBdCgNtEE4HsAbwJ4BEB/AN0AlPOEU/y7O4Bb2Uf6biWtGaeBY1fiHEQXAAsBNKpNrwIwGkC7LMYV2jEAVquPIXMsANAZ5wBSACYqNj8BYDZPM9eoJAecVBwx4Wzqie4AvlUn/j6Aywow7+XkNiMa31CkCop7ARzhAn6hXMfhYgD3AJgG4HMA2wD8RXY2VuBHAEsBXOm5hgG0HGmuZSgKhEcBnOHEHwFoHdGvBMB9AJYp3eDz1Cj6qQDuB1Ac82EXKd1gaPOGFxTLPx/R5yIATwPYozZ1GsB6AC8DGA6gF4A21P6CSwFcA6AfgBZsu1nR/w6gOsO6jJIUnZS3k0/zSz8Y0edOAPVq4d8BeEJtNARF3PRWjlWXof8YxWk1+ZD5M/zKrs2XAnhHbbyOMp8r3ASgK/8WDrmDc9p4iGtszKVO6K4UnovtOwDYosxgrWLjfKCac22k6Nh4ke8P58I6pJSpE4Vno5vSxML616IwZrBeWSDXJj9RJjIrP2Gimqi14+Tr1UTtUTi055xpHoCsReMSADtjuNbbvT1GmbLtfKli+42BgcogenTb6M3J8xOAOQAGBowjc27iGrY4dMJA5TF2QgIs5ADi4dkwCm87gLae4/WkT5/JD1jFoMo3VviZdLImGx/G7CEWPahJTzjc27s56D8BMt+P3p7Q/QFgEoDeAFry6cO2P9nnIPMBPhCf4jjphljvOtHTbAyNIudyQAlsNEqVbD0ZcPJm84uYK4iC6JnF6iP4Lnqc0ge2KMzjOxExL7Si3DQ5orrxSuZ8Td1qtXlxbjLhAvURVnrOcSFzDmmaYZubZS9HfXVVtZJF28Xdx3eiyHwwSLF93Mm7fHwjDrd50tzO/nu5Vo01fDfCZ6Dl7CzJDI1RbBe/IFSURL5DMTlCDOOwmTQjrfaH2b4k0wApZfrsTM6XHETcTV9sI40oqlD0Ia2YSF+Yja5w+A1NFO1UJm2dpjxptKEmPU4nwxd/c7wQ9jdoRVoZwxfltFyy1grrXR3HkygzEuPZSZKSGsPZ/hXCYGx7UiSh/5o0EsBpzGL7c3HE89lJMrMaM9n+0nnwAaaQZnpEOC9mMRLr2ekWq30p28UJCoFJjyfJ6bdOIALgyQvdZ44UWpoWIRK72EniAA3jbl4RuBgTLPnm+TSuJq3MHYKrSCcKWKObcpYicZCdKiLaQzM7xhcX9gvF46SVGkAI2pBOkq4abSPa/wOTc095tmfCaNKJNxgK47zE5QJdSKnkjEZJRHvQB3CloeJQprJJNwTQ3aiyOhIshaA0mw9wgJ2EjVwi0BHheJW0mzzjhxYq2fFKgvk6ZiMCu9jJJCBtJZgk5XWxigZnePQ3JvdQTM0hDr2yUYLr2Kl/hBm0nYtMubsZKoAyz1RGfK6Tn2b1lcDmjUDOG0ZaqUAFm8H5EY7QDLbLAn1OXE7xlNrITmpz07aBC23HZxhTa2n2WaDyDmnqoOmeHPE6aeTDuRwhCdAiURvhCg/z+XrM3//GvlJH+ABAX/VeQtvdMemw3Twpg74cw5TifrXGc2Et+9p1gbd8XOEqdpJqjCsYOuFQkAbV6oRF4V0XYxmeIRcc4bOBbVEa/3qlGE/FxPVtVQrM9mV+8AmGUjHh8AoO8FSE02JqczNjipnZIKUUpMw1NiY19oXV3kFlhTKubRkHkVqbxsiIUHm4Kpu5Pk6uMS6m/LU1IiEy1jchEpcSK2GVVgdFumwmFdpCYRLnPKIqQ0PZts/hsBnr9oDP4GUqKVoZoSS3kyWNwhGfv9D4WLnZKa5J/v+sIytt2L9laC5vjtVeqmqBK/nvnoTl72xRoTjSrKXekRB9N2IvsahU11fEodEYYpmu0GAllzDiap67rPddaDVOJ7m4tYCDSoksqjR2osBFURvtuQZZy9uO9+b6zHtJBu+srr9p58SIgklBb0wQseUCLZX3uNnB+oP5rsHBxd6YoAIIcXFt27ojooZQCIyJKY+Xq8AucXkc1K7GAxN2gkPGpji8riqGsrm4xFjCsWwProJz2+k7Kb99qjzSrJ2yboG2XgKW/VkURKIKJPs9g6HJKplih/WJMZRWocnhIdqYGpEGq/XMDT5mFTiLVHrstQy0xuNrTJDBzogaNXhceWw27w5I/d+gK2nFbttpeHGmNPY6kjK9OabrEoTevLkm54oTcoKJKhiR21guFDnqAKZmJ5eXNIz91jClcaHRKIsorxcptk9TcecVNepLL/asFZobpiM8PsCIgI2UK4XXmM+Td+kEoxh3elxuKmZMb5/gWkeSpYh9M2nvwcrUHc6HzPtYB2MiTUCU6DZWILooD8+Yupxp+1AU09EwNcCTLD763vIKQU8GNibr1MBqdj6SL8HoxKto+icza6jIsokVOlCu16qM02n69ond23yiO8NO+0dTdazP1zCuqGRu0fxoqg3bBtBXmKVyeOY5yrHz8XOcnKOM2nyJ9TFCn6PM7484SwFXTlBMP76WiZY1DGAOqB9OHmDbGvapJc05Id/NaEYz8L/Gv41m8sXgDERQAAAAAElFTkSuQmCC" alt="circled-user">
+                    </a>
+                </div> 
+                <a href="{{ url_for('inlogg') }}" class="login-link">Log in</a>
+                <a href="{{ url_for('register') }}" class="btn sign-up">Sign up</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="profile-container">
+        <aside class="side-menu">
+            <h3>ACCOUNT</h3>
+            <a href="{{ url_for('profile') }}" class="active">Mijn Gegevens</a>
+            <a href="{{ url_for('bestelling') }}">Mijn Bestellingen</a>
+            <a href="{{ url_for('bestelling') }}">Mijn Cart</a>
+            <a href="{{ url_for('logout') }}" style="color: red;">Log out</a>
+        </aside>
+
+        <main class="profile-content">
+            <h2>MIJN GEGEVENS</h2>
+
+            <div class="info-group">
+                <div class="data">
+                    <strong>Username</strong>
+                    {% if edit_mode == 'username' %}
+                        <form action="{{ url_for('update_profile') }}" method="POST">
+                            <input type="hidden" name="field" value="username">
+                            <input type="text" name="new_value" value="{{ user[1] }}" autofocus>
+                            <button type="submit" class="btn-save">Save</button>
+                        </form>
+                    {% else %}
+                        <p>{{ user[1] }}</p>
+                    {% endif %}
+                </div>
+                {% if edit_mode != 'username' %}
+                    <a href="{{ url_for('profile', edit='username') }}" class="btn-change">Change</a>
+                {% endif %}
+            </div>
+
+            <div class="info-group">
+                <div class="data">
+                    <strong>E-mail</strong>
+                    {% if edit_mode == 'email' %}
+                        <form action="{{ url_for('update_profile') }}" method="POST">
+                            <input type="hidden" name="field" value="email">
+                            <input type="email" name="new_value" value="{{ user[2] }}" autofocus>
+                            <button type="submit" class="btn-save">Save</button>
+                        </form>
+                    {% else %}
+                        <p>{{ user[2] }}</p>
+                    {% endif %}
+                </div>
+                {% if edit_mode != 'email' %}
+                    <a href="{{ url_for('profile', edit='email') }}" class="btn-change">Change</a>
+                {% endif %}
+            </div>
+
+            <div class="wallet-box">
+                <h3>WALLET BALANCE</h3>
+                <div class="balance">€ {{ "%.2f"|format(user[4]) }}</div>
+
+                <form action="{{ url_for('add_wallet') }}" method="POST" class="wallet-form">
+                    <input type="number" name="amount" step="0.01" placeholder="0.00" required>
+                    <button type="submit">Top Up</button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+
+
+</body>
+</html>

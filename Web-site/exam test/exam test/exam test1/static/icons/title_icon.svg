@@ -1,0 +1,14 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    path { 
+      stroke: black; 
+    }
+    @media (prefers-color-scheme: dark) {
+      path { 
+        stroke: white; 
+      }
+    }
+  </style>
+  <path d="M50 95V75M50 75C40 70 20 80 15 60C10 40 30 45 45 50M50 75C60 70 80 80 85 60C90 40 70 45 55 50M50 75C50 60 75 40 65 20C55 0 45 40 50 55M50 75C50 60 25 40 35 20C45 0 55 40 50 55" 
+        stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>

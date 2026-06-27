@@ -1,0 +1,205 @@
+/* Layout Container */
+.cart-page {
+    background-color: #fafafa; /* Slightly softer white */
+    padding: 60px 20px;
+    font-family: 'Jura', sans-serif;
+    color: #1a1a1a;
+}
+
+.cart-container {
+    display: flex;
+    max-width: 1100px;
+    margin: 0 auto;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+/* Items Section */
+.cart-items-section {
+    flex: 2;
+}
+
+.section-title {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+/* Individual Card Styling */
+.cart-card {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #f0f0f0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cart-card:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.cart-card a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-grow: 1;
+}
+
+.cart-img-info {
+    display: flex;
+    gap: 25px;
+}
+
+.cart-img-info img {
+    width: 110px;
+    height: 145px;
+    object-fit: cover;
+    background-color: #f9f9f9;
+    justify-content: left;
+}
+
+/* Product Details */
+.brand-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    margin: 0 0 4px 0;
+    color: #000;
+}
+
+.prod-name {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+.prod-meta {
+    background: #f4f4f4;
+    padding: 4px 12px;
+    font-size: 0.75rem;
+    display: inline-block;
+    border-radius: 2px;
+    letter-spacing: 1px;
+}
+
+.current-price {
+    display: block;
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+/* Actions Section */
+.cart-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    min-width: 100px;
+}
+
+.qty-input {
+    width: 50px;
+    padding: 6px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    text-align: center;
+    font-family: 'Jura', sans-serif;
+    outline: none;
+}
+
+.qty-input:focus {
+    border-color: #000;
+}
+
+.delete-btn {
+    text-decoration: none;
+    color: #ccc;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+    padding-bottom: 5px;
+}
+
+.delete-btn:hover {
+    color: #000;
+}
+
+/* Summary Sidebar */
+.summary-section {
+    flex: 1;
+    position: sticky;
+    top: 40px;
+}
+
+.summary-box {
+    background: #fff;
+    padding: 30px;
+    border: 1px solid #000; /* Minimalist high-fashion look */
+}
+
+.summary-box h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.free {
+    color: #27ae60;
+    font-weight: 600;
+}
+
+.total {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.total-price {
+    color: #e63946; /* Clean red for contrast */
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 18px;
+    background: #000;
+    color: #fff;
+    border: none;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: background 0.3s;
+}
+
+.checkout-btn:hover {
+    background: #333;
+}
+
+/* Responsive */
+@media (max-width: 850px) {
+    .cart-container {
+        flex-direction: column;
+    }
+    .summary-section {
+        width: 100%;
+        position: static;
+    }
+}

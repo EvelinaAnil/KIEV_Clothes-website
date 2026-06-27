@@ -1,0 +1,641 @@
+body {
+    margin: 0; /* want body default heb 8px margin-top */
+    font-family: "Jura", sans-serif;
+    font-size: x-large;
+    padding-top: 39px; 
+}
+
+
+.navbar-header {
+    position: fixed;
+    top: 0;
+    left: 0; /* see it is left corner */
+    background-color: lightslategrey;
+    width: 100%;
+    min-width: 750px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%; 
+    box-sizing: border-box; /* because padding would not do width to 100% */
+    z-index: 1000; /* menu would be on the top from all elements*/
+    
+    /* line under */
+    border: 0;
+    border: 0;                             /* Removes all default borders */
+    border-bottom: 3px solid;              /* Adds ONLY the bottom line and defines style */
+    border-color: rgba(63, 78, 94, 0.603);
+}
+
+.logo{
+    display: flex;
+    gap: 8px;
+}
+.logo a{
+    text-decoration: none;
+    color: black;
+    font-size: x-large;
+}
+.kiev-icon{
+    width: 35px; 
+    height: 35px;
+    margin-top: -15px;
+    color: black;
+    flex-shrink: 0;
+    transition: transform 0.3s ease, color 0.3s ease;
+    vertical-align: middle
+}
+
+
+.main-nav{
+    position: relative;
+    display: flex;
+    gap: 20px;
+}
+
+.main-nav a{
+    text-decoration: none;
+    color: #222222;
+    /* font-size: 16px; */
+    padding: 10px 5px;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s ease ;
+}
+
+/*------ just to muis on this happeneds ----*/
+.main-nav a:hover{
+    text-shadow: 0.5px 0 0 currentColor, -0.5px 0 0 currentColor;
+}
+/* effect met hover -> line here */
+.main-nav a:hover::after{
+    width: 100%;
+}
+.main-nav a.active{
+    font-weight: bold;
+}
+.main-nav a.active::after{
+    width: 100%;
+}
+/* ------------------- */
+
+.nav-link{
+    position: relative;
+    z-index: 2; /* tekst before in front of the blot*/
+    text-decoration: none;
+    color: #222;
+    padding: 8px 15px;
+    transition: color 0.3s; /* for animation */
+}
+/* settings "blot" (background) */
+
+.main-nav a::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background-color: #b7cccf;
+    border-radius: 20px;
+    transform: translate(-50%, -50%) scale(0.8); /* Чуть меньше в покое */
+    z-index: -1; /* Пятно под текстом */
+    opacity: 0;  /* Скрыто */
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Эффект "прыжка" */
+}
+.main-nav a:hover::before,
+.main-nav a.active::before {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+
+
+.navbar {
+    position: relative;
+}
+
+
+.auth-buttons{
+    align-items: center;   
+    gap: 15px;
+    flex-shrink: 0; /* DO NOT allow buttons to shrink if there is not enough space */
+}
+.auth-buttons a:hover{
+    text-shadow: 0.5px 0 0 currentColor, -0.5px 0 0 currentColor;
+}
+
+.login-link {
+    text-decoration: none;
+    color: #222222;
+    white-space: nowrap;    /* dont allow text wrapping on a new line */
+
+}
+
+.btn.sign-up{
+    display: inline-block;
+    background-color: #0a0a23;
+    color: white;
+    padding: 10px 13px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    white-space: nowrap;
+    margin-left: 5px ;
+}
+/* --- Dames en Heren Section --- */
+.business-example {
+    text-align: center;
+    background: #d6edf0;
+    padding: 20px 0;
+}
+
+.brand-card {
+    background: white;
+    padding: 40px 20px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.image-row {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 0; 
+    max-width: 1000px; /* Уменьшил, чтобы на ноутах выглядело аккуратнее */
+    margin: 0 auto;
+}
+
+.image-box {
+    position: relative;
+    overflow: hidden;
+    flex: 1; 
+    /* Убрали фиксированный max-width здесь, чтобы flex работал плавно */
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%; /* Заполняем весь box */
+    display: block;
+    object-fit: cover;
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+/* --- Текст поверх фото --- */
+.image-box .text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    pointer-events: none; /* Чтобы текст не мешал клику по ссылке */
+}
+
+.image-box .text-overlay span {
+    color: white;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 4rem; /* Используем rem для стабильности */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.7;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+}
+
+/* --- Скругления углов --- */
+#img_1 {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+#img_2 {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+/* --- Эффекты при наведении --- */
+.image-box:hover img {
+    transform: scale(1.08);
+    filter: brightness(70%);
+}
+
+/* --- Адаптивность (Mobile) --- */
+@media screen and (max-width: 768px) {
+    .image-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .image-box img {
+        border-radius: 20px !important; /* На мобилке скругляем все углы */
+        height: 300px; /* Фиксируем высоту для мобилки */
+    }
+
+    .image-box .text-overlay span {
+        font-size: 2.5rem;
+    }
+}
+
+
+
+
+
+/* Container for icons next to the welcome text */
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: 15px;
+}
+
+.icon-link, .dropbtn {
+    background: none;
+    border: none;
+    color: white; 
+    font-size: 22px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.icon-link:hover, .dropbtn:hover {
+    opacity: 0.7;
+}
+
+/* Dropdown Logic */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #2c2c2c; /* Darker background */
+    min-width: 180px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.5);
+    z-index: 100;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 10px;
+    border: 1px solid #444;
+}
+
+.dropdown-content a {
+    color: #e0e0e0;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.dropdown-content i {
+    margin-right: 8px;
+    width: 16px;
+}
+
+.dropdown-content a:hover {
+    background-color: #3d3d3d;
+    color: white;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content hr {
+    border: 0;
+    border-top: 1px solid #444;
+    margin: 0;
+}
+
+.btn-logout {
+    color: #ff5f5f !important; /* Red for logout */
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .navbar-header {
+        min-width: auto;
+        height: auto;
+        padding: 15px;
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        gap: 15px;
+    }
+
+    /* 1. Use Order to rearrange layout visually */
+    .logo { order: 1; }
+    .auth-buttons { order: 2; width: auto; } /* Moves auth group above nav */
+    .main-nav { order: 3; }
+
+    /* 2. Style Log In to sit left of the nav links */
+    .auth-buttons {
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* Shrink the Sign-up button */
+    .btn.sign-up {
+        padding: 6px 12px; /* Reduced padding */
+        font-size: 13px;   /* Smaller font */
+        margin-left: 0;
+    }
+
+    /* Make "Log in" look like a nav link */
+    .login-link {
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #222;
+    }
+
+    /* 3. Make Nav and Log-in feel like one row */
+    .main-nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        border-top: 1px solid rgba(0,0,0,0.1); /* Subtle separator */
+        padding-top: 10px;
+        width: 100%;
+    }
+}
+
+/* Specific fix to place Log in directly in line with Nav */
+@media screen and (max-width: 768px) {
+    /* If you want Log In to literally be on the same line as 'About Us': */
+    .navbar-header {
+        flex-direction: row; /* Keep header items in a row or wrap them */
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .auth-buttons .login-link {
+        order: -1; /* This pushes it to the left of the Sign Up button */
+    }
+}
+
+
+
+/* NEW VOR AUTH BUTTONS */
+/* --- CLEANUP: Remove yellow line and old icon --- */
+
+.welcome-text strong {
+    color: #000;
+    margin-left: 2px;
+    /* Removed: border-bottom: 2px solid #ffcc00; */
+    border-bottom: none; 
+    padding-bottom: 0;
+}
+
+.welcome-text::before {
+    /* Removed: content: '👤'; */
+    content: none !important; 
+}
+
+/* --- NEW STYLES: Layout & Cart --- */
+
+.user-area {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.user-icon {
+    display: flex;
+    align-items: center;
+}
+
+.user-icon img, .cart-icon img{
+    width: 45px;
+    height: 45px;
+}
+
+.welcome-text {
+    font-family: 'Jura', sans-serif;
+    font-size: 16px;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+/* The container for the badge */
+.cart-icon {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+/* The red circle badge */
+.cart-badge {
+    position: absolute;
+    /* Adjust these to move the red circle */
+    top: 2px;      /* Distance from the top */
+    right: -2px;   /* Distance from the right edge */
+    
+    background: #ff4444; /* Red color from your image */
+    color: white;
+    border-radius: 50%;
+    min-width: 18px;
+    height: 18px;
+    
+    /* Center the number inside the circle */
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px;
+    z-index: 101;
+    pointer-events: none; /* Clicking the badge clicks the cart */
+}
+
+/* Hover effect */
+.cart-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Adjust mobile view to keep icons visible */
+@media screen and (max-width: 768px) {
+    .user-area {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .btn.sign-up {
+        padding: 5px 12px;
+        font-size: 13px;
+    }
+
+    .user-icon img{
+    width: 30px;
+    margin-top: 3px
+}
+
+    .cart-icon img{
+    width: 30px;
+    margin-top: 3px;
+}
+}
+
+
+
+
+.footer-container-pp {
+    padding: 50px 20px;
+    background-color: #ffffff;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    border-top: 1px solid #eee;
+    /* Centers the header and the container content */
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center;
+}
+
+#header-bord-pp {
+    margin-bottom: 50px;
+}
+
+#header-bord-pp strong {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #000;
+    text-transform: uppercase;
+}
+
+.voor-bord {
+    display: flex;
+    /* Centers the two columns horizontally */
+    justify-content: center; 
+    gap: 100px; 
+    width: 100%;
+    max-width: 800px;
+}
+
+.footer-col {
+    /* Ensures the links inside the column are also centered */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.list-heading {
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #999;
+    margin-bottom: 25px;
+}
+
+.footer-col nav {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer-col a {
+    text-decoration: none;
+    color: #000;
+    font-size: 15px;
+    font-weight: 400;
+    transition: opacity 0.2s ease;
+}
+
+.footer-col a:hover {
+    opacity: 0.5;
+}
+
+/* Responsive: stack them when the screen gets too narrow */
+@media (max-width: 600px) {
+    .voor-bord {
+        flex-direction: column;
+        gap: 50px;
+    }
+}
+
+
+
+.marquee-container {
+  width: 100%;
+  overflow: hidden; /* Hides the text when it goes off-screen */
+  background-color: #000; /* Matching your site's dark accents */
+  padding: 10px 0;
+  border-bottom: 1px solid #333;
+}
+
+.marquee-content {
+  display: flex;
+  white-space: nowrap;
+  gap: 50px; /* Space between the repeating text blocks */
+  animation: scroll-left-to-right 10s linear infinite;
+}
+
+.marquee-content span {
+  font-size: 24px;
+  font-weight: 900;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+
+/* The Animation Logic */
+@keyframes scroll-left-to-right {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
+
+
+.info-last {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    /* Centers everything horizontally */
+    justify-content: center;
+    padding: 20px 0;        /* Space above and below the footer */
+    background-color: #ffffff;
+    border-top: 1px solid #f0f0f0; /* Light divider line */
+    text-align: center;
+    gap: 10px;              /* Space between icon, text, and small text */
+}
+
+.kiev-icon {
+    width: 40px;            /* Size of your logo icon */
+    height: 40px;
+    color: #000;            /* Color of the SVG lines */
+    margin-bottom: 5px;
+}
+
+.info-last strong {
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.info-last small {
+    color: #999;           /* Subtle grey for the rights reserved text */
+    letter-spacing: 0.5px;
+}
+
+#mt {
+    display: flex;
+    align-items: center;
+    margin: 0 !important;
+}
