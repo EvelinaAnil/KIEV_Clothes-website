@@ -477,6 +477,14 @@ body {
     align-items: center;
 }
 
+.us-ic img{
+    margin-top: 20px;
+}
+
+.in_reg{
+    
+}
+
 .user-icon img, .cart-icon img{
     width: 45px;
     height: 45px;
@@ -542,7 +550,6 @@ body {
     }
 
     .user-icon img{
-    width: 30px;
     margin-top: 3px
 }
 
