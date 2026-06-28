@@ -148,39 +148,12 @@ def logout():
     session.clear() # all session cleaned
     return redirect(url_for('index'))
 
-@app.context_processor
-def inject_cart_count():
-    count = 0
-    if 'cart' in session:
-        count = len(session['cart'])
-    return dict(cart_count=count)
-
-# @app.route("/product.html")
-# def product():
-# # 1. Get current filters from URL
-#     active_filters = {
-#         'category': request.args.get('category'),
-#         'size': request.args.get('size'),
-#         'brand': request.args.get('brand'),
-#         'material': request.args.get('material'),
-#         'sex': request.args.get('sex'),
-#         'min_price': request.args.get('min_price', type=float),
-#         'max_price': request.args.get('max_price', type=float)
-#     }
-
-#     # 2. Fetch products using the filters
-#     items = get_all_products(
-#         active_filters['category'], 
-#         active_filters['size'], 
-#         active_filters['brand'], 
-#         active_filters['material'],
-#         active_filters['sex'],
-#         active_filters['min_price'],
-#         active_filters['max_price']
-#     )
-
-#     # 3. Pass both the items AND the active filters to the page
-#     return render_template("product.html", products=items, active=active_filters)
+# @app.context_processor
+# def inject_cart_count():
+#     count = 0
+#     if 'cart' in session:
+#         count = len(session['cart'])
+#     return dict(cart_count=count)
 
 @app.route("/product") # Removed .html for a cleaner URL
 def product():
@@ -217,8 +190,7 @@ def product():
     return render_template("product.html", 
                            products=items, 
                            active=active_filters, 
-                           search_term=search_term,
-                           cart_count=cart_count)
+                           search_term=search_term)
 
 @app.route("/aboutus.html")
 def aboutus():
@@ -328,14 +300,7 @@ def bestelling():
                            total=subtotal, 
                            error=error) # Pass error here
 
-# @app.route("/bestelling.html")
-# def bestelling():
-#     if "user" not in session:
-#         return redirect(url_for('inlogg'))
-    
-#     # Get only the orders for the logged-in user
-#     user_orders = get_user_purchases(session["user"])
-#     return render_template("bestelling.html", orders=user_orders)
+
 
 @app.route("/logout", methods=["POST"], endpoint="checkout") 
 def checkout():
