@@ -359,18 +359,12 @@ def add_wallet():
     return redirect(url_for('profile'))
 
 # ----------Besteld---------
-# @app.route('/besteld')
-# def toon_bestellingen(): # Verander de naam hier naar iets unieks
-#     if 'user' not in session:
-#         return redirect(url_for('inlogg'))
+@app.route('/besteld')
+def besteld(): # Verander de naam hier naar iets unieks
+    if 'user' not in session:
+        return redirect(url_for('inlogg'))
     
-#     username = session['user']
-#     orders = get_grouped_purchases(username)
-    
-#     # Zorg dat je cart_count ergens vandaan haalt of op 0 laat
-#     cart_count = 0 
-    
-#     return render_template('besteld.html', orders=orders, cart_count=cart_count)
+    return render_template('besteld.html')
 
 @app.route('/one_prod/<int:id_product>')
 def single_product(id_product):
